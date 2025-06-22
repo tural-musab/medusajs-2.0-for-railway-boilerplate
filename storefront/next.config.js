@@ -22,11 +22,11 @@ const nextConfig = {
       },
       { // Note: needed to serve images from /public folder
         protocol: process.env.NEXT_PUBLIC_BASE_URL?.startsWith('https') ? 'https' : 'http',
-        hostname: process.env.NEXT_PUBLIC_BASE_URL?.replace(/^https?:\/\//, ''),
+        hostname: process.env.NEXT_PUBLIC_BASE_URL?.replace(/^https?:\/\//, '') || 'localhost',
       },
       { // Note: only needed when using local-file for product media
         protocol: "https",
-        hostname: process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL?.replace('https://', ''),
+        hostname: process.env.NEXT_PUBLIC_MEDUSA_BACKEND_URL?.replace('https://', '') || 'localhost',
       },
       { // Note: can be removed after deleting demo products
         protocol: "https",
@@ -42,7 +42,7 @@ const nextConfig = {
       },
       ...(process.env.NEXT_PUBLIC_MINIO_ENDPOINT ? [{ // Note: needed when using MinIO bucket storage for media
         protocol: "https",
-        hostname: process.env.NEXT_PUBLIC_MINIO_ENDPOINT,
+        hostname: process.env.NEXT_PUBLIC_MINIO_ENDPOINT || 'localhost',
       }] : []),
     ],
   },
